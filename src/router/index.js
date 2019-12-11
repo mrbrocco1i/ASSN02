@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Beverages from '@/components/Beverages'
-import Donate from '@/components/Donate'
+import Add from '@/components/Add'
 import AboutUs from '@/components/AboutUs'
 import ContactUs from '@/components/ContactUs'
+import Edit from '@/components/Edit'
 
 Vue.use(Router)
 
@@ -21,9 +22,9 @@ export default new Router({
       component: Beverages
     },
     {
-      path: '/donate',
-      name: 'Donate',
-      component: Donate
+      path: '/add',
+      name: 'Add',
+      component: Add
     },
     {
       path: '/about',
@@ -34,6 +35,12 @@ export default new Router({
       path: '/contact',
       name: 'ContactUs',
       component: ContactUs
+    },
+    {
+      path: '/edit',
+      name: 'Edit',
+      component: Edit,
+      props: true
     }
   ]
 })
