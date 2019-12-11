@@ -4,7 +4,9 @@
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
+          <template v-if="childDataLoaded">
           <beverage-form :beverage="beverage" beverageBtnTitle="Update record" @beverage-is-created-updated="updateBeverage"></beverage-form>
+          </template>
         </div><!-- /col -->
       </div><!-- /row -->
     </div><!-- /container -->
