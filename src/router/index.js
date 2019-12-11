@@ -5,6 +5,7 @@ import Beverages from '@/components/Beverages'
 import Add from '@/components/Add'
 import AboutUs from '@/components/AboutUs'
 import ContactUs from '@/components/ContactUs'
+import Edit from '@/components/Edit'
 
 Vue.use(Router)
 
@@ -34,6 +35,12 @@ export default new Router({
       path: '/contact',
       name: 'ContactUs',
       component: ContactUs
+    },
+    {
+      path: '/edit',
+      name: 'Edit',
+      component: Edit,
+      props: true
     }
   ]
 })
