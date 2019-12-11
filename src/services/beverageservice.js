@@ -7,5 +7,11 @@ export default {
   postBeverage (beverage) {
     return Api().post('/beverages/addRecord', beverage,
       { headers: {'Content-type': 'application/json'} })
+  },
+  incrementAmount (id) {
+    return Api().put(`/beverages/addAmount/${id}`)
+  },
+  deleteRecord (id) {
+    return Api().delete(`/beverages/deleteById/${id}`)
   }
 }

@@ -39,4 +39,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.VueTables__sortable {
+  cursor: pointer;
+}
 </style>

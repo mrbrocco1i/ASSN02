@@ -3,6 +3,8 @@
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
       <v-client-table :columns="columns" :data="beverages" :options="options">
+        <a slot="addAmount" slot-scope="props" class="fa fa-plus fa-2x" @click="addAmount(props.row._id)"></a>
+        <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteRecord(props.row._id)"></a>
       </v-client-table>
     </div>
   </div>
@@ -19,10 +21,11 @@ export default {
   name: 'Beverages',
   data () {
     return {
+      props: ['_id'],
       messagetitle: ' Beverages List ',
       beverages: [],
       errors: [],
-      columns: ['type', 'name', 'brand', 'size', 'amount', 'price'],
+      columns: ['type', 'name', 'brand', 'size', 'amount', 'price', 'addAmount', 'remove'],
       options: {
         headings: {
           _id: 'ID',
@@ -32,7 +35,8 @@ export default {
           size: 'Size',
           amount: 'Amount',
           price: 'Price'
-        }
+        },
+        sortable: ['amount', 'price']
       }
     }
   },
@@ -46,6 +50,27 @@ export default {
           // JSON responses are automatically parsed.
           this.beverages = response.data
           console.log(this.beverages)
+        })
+        .catch(error => {
+          this.errors.push(error)
+          console.log(error)
+        })
+    },
+    addAmount: function (id) {
+      BeverageService.incrementAmount(id)
+        .then(response => {
+
+          console.log(response)
+        })
+        .catch(error => {
+          this.errors.push(error)
+          console.log(error)
+        })
+    },
+    deleteRecord: function (id) {
+      BeverageService.deleteRecord(id)
+        .then(response => {
+          this.loadBeverages()
         })
         .catch(error => {
           this.errors.push(error)

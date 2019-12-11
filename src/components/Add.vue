@@ -20,6 +20,7 @@
               <label class="form-control-label" name="amount">Amount (Enter a number between 1 and 30)</label>
               <input class="form__input" type="number" v-model.trim="amount"/>
             </div>
+            <div class="error" v-if="!$v.amount.required">Amount is Required</div>
             <div class="error" v-if="!$v.amount.between">Amount must be between 1 and 30</div>
             <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
               <label class="form__label">Beverage Name</label>
@@ -31,17 +32,20 @@
               <label class="form__label">Brand</label>
               <input class="form__input" v-model.trim="$v.brand.$model"/>
             </div>
-            <div class="error" v-if="!$v.name.required">Brand is Required</div>
+            <div class="error" v-if="!$v.brand.required">Brand is Required</div>
+            <div class="error" v-if="!$v.brand.minLength">Name must have at least {{$v.brand.$params.minLength.min}} letters.</div>
             <div class="form-group" :class="{ 'form-group--error': $v.size.$error }">
               <label class="form-control-label" name="size">Size</label>
               <input class="form__input" type="number" v-model.trim="size"/>
             </div>
             <div class="error" v-if="!$v.size.required">Size is Required</div>
+            <div class="error" v-if="!$v.size.between">Size must be between 100 and 600</div>
             <div class="form-group" :class="{ 'form-group--error': $v.price.$error }">
               <label class="form-control-label" name="price">Price</label>
               <input class="form__input" type="number" v-model.trim="price"/>
             </div>
             <div class="error" v-if="!$v.price.required">Price is Required</div>
+            <div class="error" v-if="!$v.price.between">Price must be between 0 and 20</div>
             <p>
               <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Add Record</button>
             </p>
@@ -58,7 +62,7 @@
 <script>
   import VueForm from 'vueform'
   import Vue from 'vue'
-  import Vuelidate from 'Vuelidate'
+  import Vuelidate from 'vuelidate'
   import VueSweetalert from 'vue-sweetalert'
   import BeverageService from '@/services/beverageservice'
   import { required, minLength, between } from 'vuelidate/lib/validators'
@@ -74,7 +78,7 @@
   Vue.use(VueSweetalert)
 
 export default {
-  name: 'Add Beverage',
+  name: 'AddBeverage',
   data () {
     return {
       messagetitle: ' Add Beverage',
@@ -134,13 +138,16 @@ export default {
       between: between(1, 30)
     },
     brand: {
-      required
+      required,
+      minLength: minLength(3)
     },
     size: {
-      required
+      required,
+      between: between(100, 600)
     },
     price: {
-      required
+      required,
+      between: between(0,20)
     }
   },
 }
@@ -210,4 +217,5 @@ export default {
   .error:focus {
     outline-color: #ffa519;
   }
+
 </style>
