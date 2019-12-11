@@ -17,5 +17,9 @@ export default {
   putBeverage (id, beverage) {
     return Api().put(`/beverages/changePrice/${id}`, beverage,
       { headers: {'Content-type': 'application/json'} })
-  }
+  },
+  postAdmin (admin) {
+    return Api().post('/administrators/login', admin,
+      { headers: {'Content-type': 'application/json'} })
+  },
 }
