@@ -44,9 +44,9 @@
     <p>
       <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{beverageBtnTitle}}</button>
     </p>
-    <p class="typo__p" v-if="submitStatus === 'OK'">Success!</p>
+    <p class="typo__p" v-if="submitStatus === 'OK'">Record Added Successfully!</p>
     <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
-    <p class="typo__p" v-if="submitStatus === 'PENDING'">Pending ...</p>
+    <p class="typo__p" v-if="submitStatus === 'PENDING'">Record Being Added...</p>
   </form>
 </template>
 
@@ -69,7 +69,7 @@
   Vue.use(VueSweetalert)
 
   export default {
-    props: ['beverageBtnTitle', 'beverage'],
+    props: ['beverageBtnTitle'],
     name: 'FormData',
     data () {
       return {
@@ -80,7 +80,7 @@
         size: 0,
         price: 0,
         beverage: {},
-        submitStatus: null,
+        submitStatus: null
       }
     },
     methods: {
