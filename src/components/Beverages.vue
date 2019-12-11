@@ -34,8 +34,10 @@ export default {
       messagetitle: ' Beverages List ',
       beverages: [],
       errors: [],
-      columns: ['type', 'name', 'brand', 'size', 'amount', 'price', 'addAmount', 'edit', 'remove'],
+      columns: ['type', 'name', 'brand', 'price', 'amount', 'size', 'addAmount', 'edit', 'remove'],
       options: {
+        perPage: 10,
+        filterable: ['type', 'name', 'brand', 'price'],
         headings: {
           _id: 'ID',
           type: 'Drink Type',
