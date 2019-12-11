@@ -38,7 +38,7 @@ export default {
     text-align: center;
     color: #2c3e50;
     padding-top: 20px;
-    background: url("./assets/mario.png") repeat center top;
+    background: url("./assets/pikachu.jpg") repeat center bottom;
   }
   .VueTables__sortable {
     cursor: pointer;
