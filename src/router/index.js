@@ -8,6 +8,7 @@ import ContactUs from '@/components/ContactUs'
 import Edit from '@/components/Edit'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
+import Map from '@/components/Map'
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ export default new Router({
       path: '/logout',
       name: 'Logout',
       component: Logout
+    },
+    {
+      path: '/map',
+      name: 'Map',
+      component: Map
     },
   ]
 })

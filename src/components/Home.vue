@@ -6,7 +6,7 @@
       <tr>
         <td>
           <p class="lead"><b><i>You can manage beverages on this website!</i></b>
-          <p>Just click <a href ="http://localhost:8080/#/login">here</a> to login</p>
+          <p>Just click <a href ="http://localhost:8080/#/login">here</a> to log in</p>
           <p>as administrator and manage your vending machines!</p>
         </td>
         <td>
