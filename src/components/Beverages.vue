@@ -1,5 +1,5 @@
 <template>
-  <div class="hero">
+  <div v-if="loginStatus" class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
       <v-client-table :columns="columns" :data="beverages" :options="options">
@@ -9,25 +9,35 @@
       </v-client-table>
     </div>
   </div>
+  <div v-else-if="!loginStatus" class="hero">
+    <prompt></prompt>
+  </div>
 </template>
 
 <script>
 import BeverageService from '@/services/beverageservice'
 import Vue from 'vue'
 import VueTables from 'vue-tables-2'
+import Prompt from '@/components/Prompt'
 
 Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true})
 
 export default {
   name: 'Beverages',
+  components: {
+    'prompt': Prompt
+  },
   data () {
     return {
+      loginStatus: localStorage.loginStatus,
       props: ['_id'],
       messagetitle: ' Beverages List ',
       beverages: [],
       errors: [],
-      columns: ['type', 'name', 'brand', 'size', 'amount', 'price', 'addAmount', 'edit', 'remove'],
+      columns: ['type', 'name', 'brand', 'price', 'amount', 'size', 'addAmount', 'edit', 'remove'],
       options: {
+        perPage: 10,
+        filterable: ['type', 'name', 'brand', 'price'],
         headings: {
           _id: 'ID',
           type: 'Drink Type',

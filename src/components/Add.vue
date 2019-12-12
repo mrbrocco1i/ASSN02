@@ -1,5 +1,5 @@
 <template>
-  <div id="app1" class="hero">
+  <div v-if="loginStatus" id="app1" class="hero">
     <h3 class="vue-title"><i class="fa fa-plus" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
@@ -9,21 +9,27 @@
       </div><!-- /row -->
     </div><!-- /container -->
   </div>
+  <div v-else-if="!loginStatus" class="hero">
+    <prompt></prompt>
+  </div>
 </template>
 
 <script>
   import BeverageService from '@/services/beverageservice'
   import BeverageForm from "@/components/BeverageForm"
+  import Prompt from '@/components/Prompt'
 
 export default {
   data () {
     return {
+      loginStatus: localStorage.loginStatus,
       messagetitle: ' Add Beverage',
       beverage: {name:'', type:'water', amount:0, brand:'', size:0, price:0},
     }
   },
   components: {
-    'beverage-form': BeverageForm
+    'beverage-form': BeverageForm,
+    'prompt': Prompt
   },
   methods: {
     submitBeverage: function (beverage) {

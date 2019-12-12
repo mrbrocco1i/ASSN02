@@ -1,23 +1,22 @@
 <template>
   <div class="hero">
-    <h1 class="vue-title">Homer for President !!</h1>
+    <h1 class="vue-title">Welcome to Vending Machine Stock Management System!</h1>
 
     <table align="center">
       <tr>
         <td>
-          <p class="lead"><b><i>Time for a change !!</i></b>
-          <p>Out with Boring Prumt - Giving has never been so easy.</p>
-          <p>Just click <a href ="/donate">here</a> to go to</p>
-          <p>the Donation page and empty your wallet</p>
+          <p class="lead"><b><i>You can manage beverages on this website!</i></b>
+          <p>Just click <a href ="http://localhost:8080/#/login">here</a> to log in</p>
+          <p>as administrator and manage your vending machines!</p>
         </td>
         <td>
-          <img src="../assets/homer.gif" alt="description here" />
+          <iframe src="https://giphy.com/embed/xUPGcM7uZ4gQoU8kPm" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/imoji-mario-xUPGcM7uZ4gQoU8kPm"></a></p>
         </td>
       </tr>
     </table>
 
     <p></p>
-    <p class="lead">This is the homepage of your <b>MEVN</b> Web app</p>
+    <p class="lead">This is the homepage of my <b>MEVN</b> Web app</p>
   </div>
 </template>
 

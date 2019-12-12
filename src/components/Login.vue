@@ -1,27 +1,36 @@
 <template>
-  <div id="app1" class="hero">
-    <h3 class="vue-title"><i class="fa fa-comment" style="padding: 3px"></i>{{messagetitle}}</h3>
+  <div v-if="!this.loginStatus" id="app1" class="hero">
+    <h3 class="vue-title"><i class="fa fa-sign-in" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
           <template>
             <form @submit.prevent="submit">
-              <div class="form-group" :class="{ 'form-group--error': $v.msg.$error }">
-                <label class="form__label">Leave any comment to make us better!</label>
-                <input class="form__input" v-model.trim="$v.msg.$model"/>
+              <div class="form-group" :class="{ 'form-group--error': $v.username.$error }">
+                <label class="form__label">Username</label>
+                <input class="form__input" v-model.trim="$v.username.$model"/>
               </div>
-              <div class="error" v-if="!$v.msg.required">Comment is Required</div>
+              <div class="error" v-if="!$v.username.required">Username is Required</div>
+              <div class="error" v-if="!$v.username.minLength">Username must have at least {{$v.username.$params.minLength.min}} letters.</div>
+              <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
+                <label class="form__label">Password</label>
+                <input class="form__input" v-model.trim="$v.password.$model"/>
+              </div>
+              <div class="error" v-if="!$v.password.required">Password is Required</div>
               <p>
-                <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Submit</button>
+                <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Login</button>
               </p>
               <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
               <p class="typo__p" v-if="submitStatus === 'PENDING'">Processing ...</p>
-              <p class="typo__p" v-if="submitStatus === 'OK'">Thank you!</p>
+              <p class="typo__p" v-if="submitStatus === 'OK'">{{message}}</p>
             </form>
           </template>
         </div><!-- /col -->
       </div><!-- /row -->
     </div><!-- /container -->
+  </div>
+  <div v-else-if="this.loginStatus" id="app2" class="hero">
+    <h3 class="vue-title"><i class="fa fa-sign-in" style="padding: 3px"></i> You have logged in!</h3>
   </div>
 </template>
 
@@ -31,7 +40,7 @@
   import Vue from 'vue'
   import Vuelidate from 'vuelidate'
   import VueSweetalert from 'vue-sweetalert'
-  import { required } from 'vuelidate/lib/validators'
+  import { required, minLength } from 'vuelidate/lib/validators'
 
   Vue.use(VueForm, {
     inputClasses: {
@@ -46,23 +55,31 @@
   export default {
     data () {
       return {
-        messagetitle: 'Contact Us',
-        msg: '',
-        comment: {},
+        loginStatus: false,
+        messagetitle: 'Administrator Login',
+        username: '',
+        password: '',
         submitStatus: null,
+        message:'',
+        administrator: {}
       }
     },
+    created() {
+      this.loginStatus = localStorage.getItem('loginStatus')
+    },
     methods: {
-      submitComment: function (cmt) {
-        BeverageService.postcmt(cmt)
+      submitLoginInfo: function (Admin) {
+        BeverageService.postAdmin(Admin)
           .then(response => {
             // JSON responses are automatically parsed.
+            this.message = response.data.message
             console.log(response)
           })
           .catch(error => {
             this.errors.push(error)
             console.log(error)
           })
+        this.loadLoginStatus()
       },
       submit () {
         console.log('submit!')
@@ -74,19 +91,31 @@
           this.submitStatus = 'PENDING'
           setTimeout(() => {
             this.submitStatus = 'OK'
-            var comment = {
-              message: this.msg
+            var administrator = {
+              username: this.username,
+              password: this.password
             }
-            this.comment = comment
-            this.submitComment(this.comment)
+            this.administrator = administrator
+            this.submitLoginInfo(this.administrator)
           }, 500)
         }
       },
+      loadLoginStatus () {
+        if (this.message !== "No Such Username!" && this.message !== "Password is not correct!") {
+          this.loginStatus = true
+          localStorage.loginStatus = true
+        }
+        console.log(this.loginStatus)
+      }
     },
     validations: {
-      msg: {
+      username: {
         required,
+        minLength: minLength(2)
       },
+      password:{
+        required
+      }
     },
   }
 </script>
