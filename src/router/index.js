@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Beverages from '@/components/Beverages'
 import Add from '@/components/Add'
-import AboutUs from '@/components/AboutUs'
 import ContactUs from '@/components/ContactUs'
 import Edit from '@/components/Edit'
 import Login from '@/components/Login'
@@ -28,11 +27,6 @@ export default new Router({
       path: '/add',
       name: 'Add',
       component: Add
-    },
-    {
-      path: '/about',
-      name: 'AboutUs',
-      component: AboutUs
     },
     {
       path: '/contact',

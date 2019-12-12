@@ -22,4 +22,8 @@ export default {
     return Api().post('/administrators/login', admin,
       { headers: {'Content-type': 'application/json'} })
   },
+  postcmt (cmt) {
+    return Api().post('/addComment', cmt,
+      { headers: {'Content-type': 'application/json'} })
+  },
 }

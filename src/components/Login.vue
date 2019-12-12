@@ -60,7 +60,8 @@
         username: '',
         password: '',
         submitStatus: null,
-        message:''
+        message:'',
+        administrator: {}
       }
     },
     created() {
