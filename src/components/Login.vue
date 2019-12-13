@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!this.loginStatus" id="app1" class="hero">
+  <div v-if="!loginStatus" id="app1" class="hero">
     <h3 class="vue-title"><i class="fa fa-sign-in" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
@@ -29,7 +29,7 @@
       </div><!-- /row -->
     </div><!-- /container -->
   </div>
-  <div v-else-if="this.loginStatus" id="app2" class="hero">
+  <div v-else-if="loginStatus" id="app2" class="hero">
     <h3 class="vue-title"><i class="fa fa-sign-in" style="padding: 3px"></i> You have logged in!</h3>
   </div>
 </template>
@@ -56,6 +56,7 @@
     data () {
       return {
         loginStatus: false,
+        token: '',
         messagetitle: 'Administrator Login',
         username: '',
         password: '',
@@ -65,7 +66,8 @@
       }
     },
     created() {
-      this.loginStatus = localStorage.getItem('loginStatus')
+      if (!localStorage.getItem('loginStatus'))
+        localStorage.getItem('loginStatus')
     },
     methods: {
       submitLoginInfo: function (Admin) {
@@ -73,13 +75,14 @@
           .then(response => {
             // JSON responses are automatically parsed.
             this.message = response.data.message
+            this.token = response.data.token
             console.log(response)
+            this.loadLoginStatus()
           })
           .catch(error => {
             this.errors.push(error)
             console.log(error)
           })
-        this.loadLoginStatus()
       },
       submit () {
         console.log('submit!')
@@ -101,10 +104,17 @@
         }
       },
       loadLoginStatus () {
-        if (this.message !== "No Such Username!" && this.message !== "Password is not correct!") {
-          this.loginStatus = true
+        if (this.token !== undefined) {
           localStorage.loginStatus = true
+          this.loginStatus = localStorage.loginStatus
         }
+        else {
+          localStorage.loginStatus = false
+          this.loginStatus = false
+          //localStorage.loginStatus = false
+        }
+        //this.loginStatus = localStorage.loginStatus
+        console.log(this.token)
         console.log(this.loginStatus)
       }
     },

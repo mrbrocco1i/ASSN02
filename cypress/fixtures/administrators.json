@@ -1,0 +1,7 @@
+[
+  {"username": "Myron", "password": "123456", "authorised": true, "privilege": "read-write"},
+  {"username": "Mike", "password": "123456", "authorised": true, "privilege": "read-only"},
+  {"username": "Lucy", "password": "123456", "authorised": true, "privilege": "read-only"},
+  {"username": "Tony", "password": "123456", "authorised": false, "privilege": "read-only"},
+  {"username": "Helen", "password": "123456", "authorised": true, "privilege": "read-only"}
+]

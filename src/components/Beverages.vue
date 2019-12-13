@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loginStatus" class="hero">
+  <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
       <v-client-table :columns="columns" :data="beverages" :options="options">
@@ -9,9 +9,11 @@
       </v-client-table>
     </div>
   </div>
-  <div v-else-if="!loginStatus" class="hero">
+  <!--
+  <div v-else class="hero">
     <prompt></prompt>
   </div>
+  -->
 </template>
 
 <script>
