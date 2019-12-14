@@ -80,6 +80,7 @@ describe("Manage Beverages page", () => {
     })
     after(() => {
       cy.visit("http://localhost:8080/")
+      cy.wait(100)
       cy.visit("http://localhost:8080/#/beverages")
       cy.wait(100)
       cy.get('tbody')
