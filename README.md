@@ -48,7 +48,7 @@ Name: Wuzhen Ye
 
 (Optional) State the GitLab Pages URL of the coverage report for your Web API tests, e.g.
 
-https://oconnordiarmuid.gitlab.io/donations-cicd/coverage/lcov-report/
+https://20086431.gitlab.io/assn01-cicd/coverage/lcov-report/
 ## GitLab CI.
 
 (Optional) State any non-standard features (not covered in the lectures or labs) of the GitLab CI platform that you utilized.

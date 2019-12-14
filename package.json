@@ -10,12 +10,14 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "start:server": "cd ./dist && httpserver -p 8080 & wait-on http:localhost:8080"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "cors": "^2.8.5",
+    "httpserver": "^0.3.0",
     "vm": "^0.1.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
@@ -24,7 +26,8 @@
     "vue-tables-2": "^1.6.16",
     "vue2-google-maps": "^0.10.7",
     "vueform": "^2.0.0",
-    "vuelidate": "^0.7.4"
+    "vuelidate": "^0.7.4",
+    "wait-on": "^3.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
