@@ -17,7 +17,7 @@ describe('logout', () => {
       cy.get('.btn').click();
     })
     after(() => {
-      cy.wait(500)
+      cy.wait(1000)
       cy.visit('http://localhost:8080/#/logout')
       cy.get('.vue-title').should('contain','Are you sure?');
       cy.get('.btn').click();

@@ -25,6 +25,7 @@ describe("Manage Beverages page", () => {
     describe("For a confirmed delete operation", () => {
       it("reduces the no. of beverages by 1", () => {
         cy.get("tbody")
+          .wait(500)
           .find("tr")
           .should("have.length", 4);
         // Click trash/delete link of 3rd donation in list
@@ -46,7 +47,9 @@ describe("Manage Beverages page", () => {
     });
     describe("For a cancelled delete operation", () => {
       it("leaves the list unchanged", () => {
+        cy.wait(500)
         cy.get("tbody")
+          .wait(500)
           .find("tr")
           .should("have.length", 4);
         // Click trash/delete link of 3rd donation in list
@@ -71,6 +74,7 @@ describe("Manage Beverages page", () => {
   describe("add function", () => {
     it ('Shows amount increased by 1', () => {
       cy.get('tbody')
+        .wait(500)
         .find('tr')
         .eq(0)
         .find("td")
@@ -80,10 +84,11 @@ describe("Manage Beverages page", () => {
     })
     after(() => {
       cy.visit("http://localhost:8080/")
-      cy.wait(100)
+      cy.wait(500)
       cy.visit("http://localhost:8080/#/beverages")
-      cy.wait(100)
+      cy.wait(500)
       cy.get('tbody')
+        .wait(500)
         .find('tr')
         .eq(0)
         .find("td")
@@ -96,13 +101,14 @@ describe("Manage Beverages page", () => {
     describe('With valid attributes', () => {
       it('Shows success msg', () => {
         cy.get('tbody')
+          .wait(500)
           .find('tr')
           .eq(0)
           .find("td")
           .eq(7)
           .find('a')
           .click();
-        cy.wait(100)
+        cy.wait(500)
         cy.get('.vue-title').should('contain','Update Beverage')
         cy.get('#type').select("water")
         cy.get('.form__input').eq(0).type(10)
@@ -114,9 +120,9 @@ describe("Manage Beverages page", () => {
         cy.get('.typo__p').should('contain', 'Record Added Successfully!')
       })
       after(() => {
-        cy.wait(100)
+        cy.wait(500)
           .visit('http://localhost:8080/#/beverages')
-          .wait(100)
+          .wait(500)
           .get('tbody')
           .find('tr')
           .eq(0)
@@ -129,6 +135,7 @@ describe("Manage Beverages page", () => {
     describe('With invalid attributes', () => {
       it('Shows errors', () => {
         cy.get('tbody')
+          .wait(500)
           .find('tr')
           .eq(0)
           .find("td")
@@ -145,6 +152,7 @@ describe("Manage Beverages page", () => {
           .visit('http://localhost:8080/#/beverages')
           .wait(100)
           .get('tbody')
+          .wait(500)
           .find('tr')
           .eq(0)
           .find('td')

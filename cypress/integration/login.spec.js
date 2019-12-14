@@ -21,7 +21,7 @@ describe("Login Page", () => {
       it('Allows username and  password to be submitted and returns error', () => {
         cy.get(':nth-child(1) > .form__label').should('contain','Username');
         cy.get(':nth-child(3) > .form__label').should('contain','Password');
-        cy.get(':nth-child(1) > .form__input').type('Myron');
+        cy.get(':nth-child(1) > .form__input').type('Corey');
         cy.get('.form__input').eq(1).type('123');
         cy.get('.btn').click();
         cy.get('.typo__p').should('contain', 'No Such Username!');
