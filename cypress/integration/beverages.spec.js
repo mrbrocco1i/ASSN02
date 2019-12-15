@@ -1,5 +1,4 @@
 const apiURL = "http://localhost:3000/";
-
 describe("Manage Beverages page", () => {
   beforeEach(() => {
     // Delete all donations in the API's datastore

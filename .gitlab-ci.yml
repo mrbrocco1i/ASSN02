@@ -2,8 +2,8 @@ test:
   image: cypress/base:10
   stage: test
   before_script:
-    - npm install
+    - npm install cypress
     - npm install -g httpserver
-    - npm run start:server
+    - npm run start:server & sleep 30
   script:
     - npx cypress run --record --key=$CYPRESS_RECORD_KEY
