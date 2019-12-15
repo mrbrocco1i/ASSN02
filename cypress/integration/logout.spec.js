@@ -15,9 +15,10 @@ describe('logout', () => {
       cy.get(':nth-child(1) > .form__input').type('abc');
       cy.get(':nth-child(2) > .form__input').type('123');
       cy.get('.btn').click();
+      cy.wait(500)
+      cy.get('.vue-title').should('contain','You have logged in!');
     })
     after(() => {
-      cy.wait(1000)
       cy.visit('http://localhost:8080/#/logout')
       cy.get('.vue-title').should('contain','Are you sure?');
       cy.get('.btn').click();

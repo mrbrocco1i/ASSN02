@@ -42,7 +42,7 @@ Name: Wuzhen Ye
 
 ## E2E/Cypress testing.
 
-(Optional) State any non-standard features (not covered in the lectures or sample code provided) of the Cypress framework that you utilized.
+- [Cypress Dashboard] (https://dashboard.cypress.io/projects/3zj1ja/runs/12/specs)
 
 ## Web API CI.
 

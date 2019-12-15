@@ -4,6 +4,6 @@ test:
   before_script:
     - npm install cypress
     - npm install -g httpserver
-    - npm run start:server & sleep 30
+    - npm run start:server
   script:
     - npx cypress run --record --key=$CYPRESS_RECORD_KEY
