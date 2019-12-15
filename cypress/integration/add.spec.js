@@ -37,8 +37,8 @@ describe("Add Beverages page", () => {
     after(() => {
       cy.wait(100)
         .visit('http://localhost:8080/#/beverages')
-        .wait(100)
         .get('tbody')
+        .wait(500)
         .find('tr')
         .should("have.length", 5);
     })
