@@ -84,7 +84,7 @@ Student ID: 20086431
 
 - Cloud Support/acts as BaaS
     - Server: [heroku](https://assn01-prod.herokuapp.com/)
-    - Client: [firebase](https://assn02-prod.firebaseapp.com)
+    - Client: [heroku](https://assn02-web.herokuapp.com/)
 
 ## UML Diagrams & Use Cases
 
